@@ -1,5 +1,15 @@
 # jineye
 
+## Build docker
+### Image
+```
+docker build -f Dockerfile.dev -t jineye .
+```
+### Run
+```
+docker run -v$(pwd):/app -v /app/node_modules -p 8080:8080 -d --name jineye jineye
+```
+
 ## Project setup
 ```
 npm install
