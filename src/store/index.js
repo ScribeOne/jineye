@@ -22,6 +22,10 @@ export default new Vuex.Store({
     token: null,
     username: '',
     info: [],
+    records: [],
+    user: [],
+    userdevices: [],
+    devicerecords: [],
   },
   getters: {
     /* Partially Implemented not for production use */
@@ -42,13 +46,78 @@ export default new Vuex.Store({
       state.token = ''
       state.username = ''
     },
+    getRecords(state, data) {
+      state.records = data.records
+    },
+    clearRecords(state) {
+      state.records = []
+    },
+    getuser(state, data) {
+      state.user = data.user
+    },
+    getuserdevices(state, data) {
+      state.userdevices = data.devices
+    },
+    devicerecords(state, data) {
+      state.devicerecords = data.devicerecords
+    }
+
   },
   actions: {
-    test() {
-      axios.get('/records/').then(response => {
-        this.state.info = response.data;
+
+    /** 
+     * API calls
+     */
+
+    getdevicerecords({ commit }, deviceid) {
+      axios.get('/devicerecord/' + deviceid + '/').then(response => {
+        commit('devicerecords', {
+          devicerecords: response.data
+        })
         console.log(response)
       })
+        .catch(error => console.log(error))
+    },
+
+
+    getuserdevices({ commit }) {
+      axios.get('/userdevice/', {
+        headers: {
+          'Authorization': `Token ${this.state.token}`
+        }
+      }
+      ).then(response => {
+        commit('getuserdevices', {
+          devices: response.data
+        })
+        console.log(response)
+      })
+        .catch(error => console.log(error))
+    },
+
+    getuserdetails({ commit }) {
+      axios.get('/user/', {
+        headers: {
+          'Authorization': `Token ${this.state.token}`
+        }
+      }
+      ).then(response => {
+        commit('getuser', {
+          user: response.data
+        })
+        console.log(response)
+      })
+        .catch(error => console.log(error))
+    },
+
+    getRecords({ commit }) {
+      axios.get('/records/').then(response => {
+        commit('getRecords', {
+          records: response.data
+        })
+        console.log(response)
+      })
+        .catch(error => console.log(error))
     },
     login({ commit }, authData) {
       axios.post('/token-auth/', {
@@ -67,6 +136,8 @@ export default new Vuex.Store({
           console.log(error)
         })
     },
+
+    /** routing */
     logout({ commit }) {
       commit('logout')
       router.push('/login');

@@ -1,16 +1,26 @@
 <template>
-  <div>
-    <h1>about page</h1>
-  </div>
+  <b-container fluid="md" class="some-container">
+    <b-row>
+      <b-col></b-col>
+      <b-col>
+        <div>
+          <h1>about page</h1>
+        </div>
+      </b-col>
+      <b-col></b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
 export default {
   name: "about",
-  props: {},
-   data() {
+  components: {},
+  data() {
     return {};
   },
+  methods: {},
+  computed: {}
 };
 </script>
 

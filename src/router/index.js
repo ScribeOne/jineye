@@ -3,7 +3,9 @@ import Router from 'vue-router'
 import Home from '../pages/Home.vue'
 import About from '../pages/About.vue'
 import Login from '../pages/Login.vue'
-import DeviceDetail from '../pages/DeviceDetail.vue'
+import Profile from '../pages/Profile.vue'
+import Devices from '../pages/Devices.vue'
+import DeviceRecords from '../pages/DeviceRecords.vue'
 import Test from '../components/Test.vue'
 import store from '../store'
 
@@ -21,6 +23,11 @@ let router = new Router({
             component: Home
         },
         {
+            path: '/profile',
+            name: 'profile',
+            component: Profile,
+        },
+        {
             path: '/about',
             name: 'about',
             component: About,
@@ -34,13 +41,22 @@ let router = new Router({
             component: Login
         },
         {
-            path: '/devicedetail',
-            name: 'devicedetail',
-            component: DeviceDetail,
+            path: '/devices',
+            name: 'devices',
+            component: Devices,
             meta: {
                 requiresAuth: true
             }
         },
+        {
+            path: '/devicerecords/:id',
+            name: 'devicerecords',
+            component: DeviceRecords,
+            meta: {
+                requiresAuth: true
+            }
+        },
+
         {
             path: '/test',
             name: 'test',
@@ -53,11 +69,10 @@ router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
     if (requiresAuth && !store.getters.loggedIn) {
-       // const loginpath = window.location.pathname;
-        next({name: 'login', query: {redirect: to.fullPath}})
-    } else if (!requiresAuth && store.getters.loggedIn){
-        next('home')
-    } else next()
+        next('login')
+    } else {
+        next()
+    }
 
 
 

@@ -66,8 +66,7 @@ export default {
 
       this.login();
 
-      console.log(this.$route.query.redirect);
-      this.$router.push(this.$route.query.redirect);
+     this.$router.push('home');
 
       /*this.login
         .then(() => {
