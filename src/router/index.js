@@ -6,7 +6,6 @@ import Login from '../pages/Login.vue'
 import Profile from '../pages/Profile.vue'
 import Devices from '../pages/Devices.vue'
 import DeviceRecords from '../pages/DeviceRecords.vue'
-import Test from '../components/Test.vue'
 import store from '../store'
 
 
@@ -26,6 +25,9 @@ let router = new Router({
             path: '/profile',
             name: 'profile',
             component: Profile,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/about',
@@ -55,12 +57,6 @@ let router = new Router({
             meta: {
                 requiresAuth: true
             }
-        },
-
-        {
-            path: '/test',
-            name: 'test',
-            component: Test
         },
     ]
 })

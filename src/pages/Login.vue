@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import LayoutDefault from "../layouts/LayoutDefault.vue";
+
 export default {
   name: "login",
   data() {
@@ -66,7 +68,7 @@ export default {
 
       this.login();
 
-     this.$router.push('home');
+     this.$router.push('/profile');
 
       /*this.login
         .then(() => {
@@ -88,10 +90,10 @@ export default {
         password: this.form.password
       });
     }
+  },
+  created() {
+    this.$emit("update:layout", LayoutDefault);
   }
-  //created() {
-  //  console.log(this.$route);
-  //}
 };
 </script>
 

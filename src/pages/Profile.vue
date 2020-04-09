@@ -1,67 +1,57 @@
 <template>
-  <b-container fluid="md" class="login-container">
-    <b-row>
-      <b-col>
-        <Sidebar></Sidebar>
-      </b-col>
-      <b-col cols="8">
-        <div>
-          <h1>User details</h1>
-        </div>
+  <div>
+    <b-container fluid>
+      <b-row>
+        <b-col>
+          <b-row>
+            <b-col>
+              <p>Username</p>
+            </b-col>
+            <b-col>
+              <p>{{user.username}}</p>
+            </b-col>
+          </b-row>
 
-        <b-row>
-          <b-col>
-            <p>Username</p>
-          </b-col>
-          <b-col>
-            <p>{{user.username}}</p>
-          </b-col>
-        </b-row>
+          <b-row>
+            <b-col>
+              <p>E-mail address</p>
+            </b-col>
+            <b-col>
+              <p>{{user.email}}</p>
+            </b-col>
+          </b-row>
 
-        <b-row>
-          <b-col>
-            <p>E-mail address</p>
-          </b-col>
-          <b-col>
-            <p>{{user.email}}</p>
-          </b-col>
-        </b-row>
+          <b-row>
+            <b-col>
+              <p>Address</p>
+            </b-col>
+            <b-col>
+              <p>{{userprofile.adress}}</p>
+            </b-col>
+          </b-row>
 
-         <b-row>
-          <b-col>
-            <p>Address</p>
-          </b-col>
-          <b-col>
-            <p>{{user.profile.adress}}</p>
-          </b-col>
-        </b-row>
-
-         <b-row>
-          <b-col>
-            <p>Birth Date</p>
-          </b-col>
-          <b-col>
-            <p>{{user.profile.birth_date}}</p>
-          </b-col>
-        </b-row>
-
-        <b-button @click="getuserdetails">userdetails api</b-button>
-        <b-button @click="getuserdevices">userdevices api</b-button>
-      </b-col>
-      <b-col></b-col>
-    </b-row>
-    <b-row></b-row>
-  </b-container>
+          <b-row>
+            <b-col>
+              <p>Birth Date</p>
+            </b-col>
+            <b-col>
+              <p>{{userprofile.birth_date}}</p>
+            </b-col>
+          </b-row>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-button ref="mybutton" @click="getrefs">Get refs</b-button>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
-import Sidebar from "../components/Sidebar.vue";
-
+import LayoutLoggedIn from "../layouts/LayoutLoggedIn.vue";
 export default {
-  name: "about",
-  components: {
-    Sidebar
-  },
+  name: "profile",
+  components: {},
   data() {
     return {};
   },
@@ -69,17 +59,28 @@ export default {
     user() {
       return this.$store.state.user;
     },
+    userprofile() {
+      return this.$store.state.userprofile;
+    },
     userdevices() {
       return this.$store.state.userdevices;
     }
   },
 
+  created() {
+    this.$emit("update:layout", LayoutLoggedIn);
+  },
+
   mounted() {
     this.$store.dispatch("getuserdetails");
-    this.getuserdevices;
+    this.$store.dispatch("getuserdevices");
   },
 
   methods: {
+    getrefs: function() {
+        console.log(this.$refs)
+        this.$refs.mybutton.innerHTML = "Hello"
+    },
     getuserdetails: function() {
       this.$store.dispatch("getuserdetails");
     },

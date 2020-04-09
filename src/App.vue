@@ -1,26 +1,17 @@
 <template>
-  <div id="app">
-    <Header />
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <main>
-      <router-view></router-view>
-    </main>
-  </div>
+  <component :is="layout">
+    <router-view :layout.sync="layout" />
+  </component>
 </template>
 
 <script>
-// import Test from "./components/Test.vue";
-import Header from "./components/Header.vue";
-
 export default {
   name: "App",
-  components: {
-    Header
+  components: {},
+  data() {
+    return {
+      layout: "div"
+    };
   }
 };
 </script>
-
-<style>
-#app {
-}
-</style>

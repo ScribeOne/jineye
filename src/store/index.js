@@ -24,12 +24,15 @@ export default new Vuex.Store({
     info: [],
     records: [],
     user: [],
+    userprofile:[],
     userdevices: [],
     devicerecords: [],
   },
   getters: {
     /* Partially Implemented not for production use */
-    loggedIn: state => !!state.token
+    loggedIn(state) {
+      return !!state.token
+    }
   },
   mutations: {
     increment(state) {
@@ -54,6 +57,7 @@ export default new Vuex.Store({
     },
     getuser(state, data) {
       state.user = data.user
+      state.userprofile = data.user.profile
     },
     getuserdevices(state, data) {
       state.userdevices = data.devices
@@ -61,6 +65,7 @@ export default new Vuex.Store({
     devicerecords(state, data) {
       state.devicerecords = data.devicerecords
     }
+
 
   },
   actions: {

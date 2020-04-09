@@ -1,4 +1,14 @@
 <template>
+  <div class="topnav">
+   <router-link :to="{name : 'home'}"><img src="@/assets/logo.png" height="30" width="30" /></router-link>
+    <router-link :to="{name : 'profile'}">JinEye</router-link>
+    <div class="topnav-right">
+      <router-link v-if="!loggedIn" :to="{name: 'login'}">Login</router-link>
+      <a v-else @click="logout">{{username}}</a>
+    </div>
+  </div>
+
+  <!--
   <div>
     <b-navbar toggleable="lg" type="dark" variant="default">
       <b-navbar-brand :to="{name : 'home'}">
@@ -15,14 +25,15 @@
           <b-nav-item :to="{name : 'about'}">About</b-nav-item>
         </b-navbar-nav>
 
-        <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-item v-if="!loggedIn" :to="{name : 'login'}">Login</b-nav-item>
-          <b-nav-item v-else @click="logout">Logout</b-nav-item>
+          <b-nav-item v-else @click="logout">{{username}}</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
   </div>
+
+  -->
 </template>
 
 <script>
@@ -31,6 +42,9 @@ export default {
   computed: {
     loggedIn: function() {
       return this.$store.getters.loggedIn;
+    },
+    username: function() {
+      return this.$store.state.username;
     }
   },
   methods: {
@@ -43,4 +57,42 @@ export default {
 
 
 <style scoped>
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 3.5rem;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  height: inherit;
+  color: white;
+
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+  float: right;
+}
 </style>
