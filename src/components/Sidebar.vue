@@ -25,7 +25,7 @@
         v-for="device in userdevices"
         :key="device.device_id"
         :to="'/devicerecords/'+device.device_id"
-      >Device {{device.device_id}}</router-link>
+      >Device {{device.device_name }}</router-link>
     </div>
     <router-link :to="{name : 'devices'}" class-active="active">Geräte</router-link>
     <router-link :to="{name : 'profile'}" class-active="active">Profil</router-link>
