@@ -103,7 +103,7 @@ export default {
 
 <style scoped>
 .device-container {
-  background-color: rgba(51, 51, 51, 0.2);
+  background-color: rgba(245, 246, 250,1.0);
   padding: 1rem;
   margin: 2rem;
 }

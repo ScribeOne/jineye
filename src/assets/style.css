@@ -5,11 +5,12 @@ html { height:100%; }
 #app {
     font-family: "Open Sans Condensed";
     color: #363636;
+    background-color: rgb(209, 216, 218);
     min-height: 100%;
 }
 
 #test {
-    color: #008ccf;
+    color: #869399;
     color: #363636
 }
 
@@ -18,7 +19,7 @@ html { height:100%; }
 }
 
 .navbar-dark {
-    background-color: #008ccf;
+    background-color: #555;
 }
 
 
@@ -45,7 +46,7 @@ html { height:100%; }
     margin-top: 3.5rem;
     padding: 0;
     width: 200px;
-    background-color: #666666;
+    background-color: rgba(75, 75, 75,1.0);
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -53,10 +54,10 @@ html { height:100%; }
   
   /* Sidebar links */
   .sidebar a, .dropdown-btn {
-    padding: 6px 8px 6px 16px;
+    padding: 16px 8px 16px 16px;
     text-decoration: none;
-    font-size: 20px;
-    color: #818181;
+    font-size: 15px;
+    color: rgba(236, 240, 241,1.0);
     display: block;
     border: none;
     background: none;
@@ -68,7 +69,7 @@ html { height:100%; }
   
   /* Active/current link */
   .sidebar a.router-link-active {
-    background-color: #4caf50;
+    background-color: #555;
     color: white;
   }
   

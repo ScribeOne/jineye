@@ -1,6 +1,8 @@
 <template>
   <div class="topnav">
-   <router-link :to="{name : 'home'}"><img src="@/assets/logo.png" height="30" width="30" /></router-link>
+    <router-link :to="{name : 'home'}">
+     <!--  <img src="@/assets/logo.png" height="30" width="30" /> -->
+    </router-link>
     <router-link :to="{name : 'profile'}">JinEye</router-link>
     <div class="topnav-right">
       <router-link v-if="!loggedIn" :to="{name: 'login'}">Login</router-link>
@@ -59,7 +61,7 @@ export default {
 <style scoped>
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: #333;
+  background-color: rgba(245, 246, 250,1.0);
   overflow: hidden;
   position: fixed;
   z-index: 1;
@@ -71,12 +73,12 @@ export default {
 .topnav a {
   float: left;
   height: inherit;
-  color: white;
+  color: rgba(61, 61, 61,1.0);
 
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 /* Change the color of links on hover */
